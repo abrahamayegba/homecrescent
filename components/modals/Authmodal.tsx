@@ -73,7 +73,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ open, openModal, onClose }) => {
                     Welcome to Homecrescent
                   </p>
                   <Tabs
-                    defaultValue="account"
+                    defaultValue="signin"
                     className="w-full flex items-start flex-col"
                   >
                     <TabsList className=" border-b w-full flex-row gap-x-4 flex justify-start">
