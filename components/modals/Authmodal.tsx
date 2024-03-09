@@ -66,10 +66,10 @@ const AuthModal: React.FC<AuthModalProps> = ({ open, openModal, onClose }) => {
             >
               <Dialog.Panel className="relative transform gap-y-3 overflow-hidden rounded-lg bg-white p-4 transition-all w-[440px] ">
                 <div className=" flex flex-col gap-y-3 py-6 px-2 relative">
-                  <button className=" absolute cursor-pointer border border-transparent hover:bg-gray-100 rounded-full p-2 right-0 mt-[-20px]">
+                  <button className=" absolute cursor-pointer border border-transparent hover:bg-gray-100 rounded-full p-2 right-0 mt-[-24px]">
                     <X onClick={onClose} className=" w-5 h-5" />
                   </button>
-                  <p className=" font-semibold text-[22px] text-primary-blue text-opacity-90 tracking-tight">
+                  <p className=" font-semibold text-2xl text-primary-blue text-opacity-90 tracking-tight mt-3">
                     Welcome to Homecrescent
                   </p>
                   <Tabs

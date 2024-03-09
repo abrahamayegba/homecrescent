@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React from "react";
+import GoogleIcon from "./logos/GoogleIcon";
 
 const Signinform = () => {
   return (
@@ -31,14 +32,20 @@ const Signinform = () => {
         </label>
         <div className={`relative max-w-[400px] group`}>
           <input
-            //   type={type}
             required
-            className={`w-full px-3 py-[10px] relative border rounded-[8px] focus:outline-none`}
+            className={`w-full px-3 py-[10px] relative border rounded focus:outline-none`}
             placeholder="8+ characters"
           />
         </div>
-        {/* {error && <p className="text-red-500 text-sm pl-1">{error}</p>} */}
-        <p className="text-base text-primary-black mt-4">
+        <div className=" flex flex-col mt-6">
+          <button
+            type="submit"
+            className={`rounded md:px-[100px] px-[90px] max-w-full md:max-w-[400px] py-[10px]  text-white bg-primary-blue text-lg flex items-center justify-center`}
+          >
+            {"Sign in"}
+          </button>
+        </div>
+        <p className="text-base text-primary-black mt-2">
           Forgot password?{" "}
           <Link
             href="/auth/resetlink"
@@ -47,13 +54,14 @@ const Signinform = () => {
             Reset here
           </Link>
         </p>
-      </div>
-      <div className=" flex flex-col mt-1">
-        <button
-          type="submit"
-          className={`rounded-[10px] md:px-[100px] px-[90px] max-w-full md:max-w-[400px] py-[10px]  text-white bg-primary-blue text-lg flex items-center justify-center`}
-        >
-          {"Sign in"}
+        <div className="flex items-center justify-center my-4">
+          <div className="border-b border-gray-300 w-full"></div>
+          <p className="mx-5 text-primary-blue font-medium">OR</p>
+          <div className="border-b border-gray-300 w-full"></div>
+        </div>
+        <button className=" w-full py-[10px] rounded-[10px] border  border-gray-300 bg-white text-[17px] flex items-center justify-center gap-x-3">
+          <GoogleIcon />
+          Continue with Google
         </button>
       </div>
     </form>
