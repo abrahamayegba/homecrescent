@@ -2,19 +2,16 @@ import React from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 import { useToast } from "../ui/use-toast";
+import { X } from "lucide-react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
+import Signinform from "../Signinform";
 
 interface AuthModalProps {
   open: boolean;
   openModal: () => void;
   onClose: () => void;
-  customerId: string;
 }
-const AuthModal: React.FC<AuthModalProps> = ({
-  open,
-  openModal,
-  onClose,
-  customerId,
-}) => {
+const AuthModal: React.FC<AuthModalProps> = ({ open, openModal, onClose }) => {
   const { toast } = useToast();
 
   const showSuccessToast = () => {
@@ -54,7 +51,7 @@ const AuthModal: React.FC<AuthModalProps> = ({
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div className="fixed inset-0 bg-gray-400 bg-opacity-75 transition-opacity" />
+          <div className="fixed inset-0 bg-gray-900 bg-opacity-60 transition-opacity" />
         </Transition.Child>
         <div className="fixed inset-0 z-10 overflow-y-auto">
           <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
@@ -67,29 +64,37 @@ const AuthModal: React.FC<AuthModalProps> = ({
               leaveFrom="opacity-100 translate-y-0 sm:scale-100"
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
-              <Dialog.Panel className="relative transform gap-y-3 overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow transition-all sm:w-full sm:max-w-[450px] sm:p-9">
-                <div className=" flex flex-col gap-y-3">
-                  <div className=" flex"></div>
-                  <p className=" text-lg text-[#121212]">Archive customer</p>
-                  <p className=" text-primary-greytext">
-                    Are you sure you want to archive this customer? It won’t be
-                    visible till unarchive
+              <Dialog.Panel className="relative transform gap-y-3 overflow-hidden rounded-lg bg-white p-4 transition-all w-[440px] ">
+                <div className=" flex flex-col gap-y-3 py-6 px-2 relative">
+                  <button className=" absolute cursor-pointer border border-transparent hover:bg-gray-100 rounded-full p-2 right-0 mt-[-20px]">
+                    <X onClick={onClose} className=" w-5 h-5" />
+                  </button>
+                  <p className=" font-semibold text-[22px] text-primary-blue text-opacity-90 tracking-tight">
+                    Welcome to Homecrescent
                   </p>
-                  <div className=" flex justify-between mt-6">
-                    <button
-                      onClick={onClose}
-                      className=" px-7 py-[10px] rounded-[10px] flex gap-x-2 items-center justify-center border border-primary-border text-gray-800"
-                    >
-                      Cancel
-                    </button>
-                    <button
-                      type="button"
-                      onClick={showSuccessToast}
-                      className={`px-7 py-[10px] rounded-[10px] flex gap-x-2 items-center justify-center bg-primary-blue text-white`}
-                    >
-                      {"Archive"}
-                    </button>
-                  </div>
+                  <Tabs
+                    defaultValue="account"
+                    className="w-full flex items-start flex-col"
+                  >
+                    <TabsList className=" border-b w-full flex-row gap-x-4 flex justify-start">
+                      <TabsTrigger
+                        className="data-[state=active]:border-b-2 text-primary-blue data-[state=active]:border-b-blue-600 "
+                        value="signin"
+                      >
+                        Sign in
+                      </TabsTrigger>
+                      <TabsTrigger
+                        className="data-[state=active]:border-b-2 text-primary-blue data-[state=active]:border-b-blue-600 "
+                        value="newaccount"
+                      >
+                        New account
+                      </TabsTrigger>
+                    </TabsList>
+                    <TabsContent className=" w-full" value="signin">
+                      <Signinform />
+                    </TabsContent>
+                    <TabsContent value="newaccount">new account</TabsContent>
+                  </Tabs>
                 </div>
               </Dialog.Panel>
             </Transition.Child>
