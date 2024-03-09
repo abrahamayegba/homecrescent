@@ -20,10 +20,10 @@ const FAQs = () => {
           >
             <AccordionItem className=" py-2" value="item-1">
               <AccordionTrigger>
-                What's the best thing about Switzerland?
+                What’s the best thing about Switzerland?
               </AccordionTrigger>
               <AccordionContent className=" text-base font-light">
-                I don't know, but the flag is a big plus. Lorem ipsum dolor sit
+                I don’t know, but the flag is a big plus. Lorem ipsum dolor sit
                 amet consectetur adipisicing elit. Quas cupiditate laboriosam
                 fugiat.
               </AccordionContent>
