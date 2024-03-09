@@ -1,7 +1,3 @@
-export default function Home() {
-  return (
-    <div>
-      <div>new app</div>
-    </div>
-  );
-}
+import LandingPage from "./landingpage/page";
+
+export default LandingPage;
