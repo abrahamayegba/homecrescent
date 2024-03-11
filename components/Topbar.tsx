@@ -6,6 +6,7 @@ import Homecrescentlogo from "./logos/Homecrescentlogo";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "./ui/hover-card";
 import AuthModal from "./modals/Authmodal";
 import useModal from "./hooks/useModal";
+import Link from "next/link";
 
 const Topbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -24,10 +25,10 @@ const Topbar = () => {
             aria-label="Global"
           >
             <div className="flex lg:flex-1">
-              <a href="#" className="-m-1.5 p-1.5">
+              <Link href="/" className="-m-1.5 p-1.5">
                 <span className="sr-only">Your Company</span>
                 <Homecrescentlogo />
-              </a>
+              </Link>
             </div>
             <div className="flex lg:hidden">
               <button

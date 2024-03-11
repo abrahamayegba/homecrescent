@@ -2,6 +2,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Filtersvg from "@/components/icons/Filtersvg";
+import Topnav from "../Topnav";
 
 const generateRandomAddresses = () => {
   const streets = [
@@ -64,50 +65,69 @@ const Hero = () => {
     setSearchTerm(suggestion);
     setShowSuggestions(false);
   };
+  const [scrollPosition, setScrollPosition] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollPosition(window.pageYOffset);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <div className=" mt-[80px]">
-      <div className="relative">
-        <Image
-          className="absolute inset-0 h-full w-full"
-          src="/hero3.jpg"
-          width={1200}
-          height={600}
-          alt="hero"
-        />
-        <div className="mx-auto max-w-2xl lg:py-[170px] relative">
-          <div className="text-center text-white">
-            <h1 className="text-5xl font-bold mb-6 tracking-tight">
-              Helping You Get Home
-            </h1>
-            <div className="relative flex justify-center items-center">
-              <input
-                type="text"
-                className="border border-gray-300 w-[700px] placeholder:font-light placeholder:text-primary-blue placeholder:text-opacity-70 placeholder:text-base text-primary-blue rounded pl-4 py-6 focus:outline-none focus:border-blue-500"
-                placeholder="Enter an address, or city"
-                value={searchTerm}
-                onChange={handleInputChange}
-              />
-              <Filtersvg />
-            </div>
-            {filteredSuggestions.length > 0 && showSuggestions && (
-              <div ref={componentRef}>
-                <ul className="absolute z-[20] bg-white border border-gray-300 rounded mt-1 w-full max-w-[700px]">
-                  {filteredSuggestions.map((suggestion, index) => (
-                    <li
-                      key={index}
-                      className="px-4 py-4 text-start cursor-pointer text-primary-blue font-light hover:bg-blue-50 hover:bg-opacity-80"
-                      onClick={() => handleSuggestionClick(suggestion)}
-                    >
-                      {suggestion}
-                    </li>
-                  ))}
-                </ul>
+    <>
+      <Topnav scrollPosition={scrollPosition} />
+      <div id="hero-section" className=" mt-[80px]">
+        <div className="relative">
+          <Image
+            className="absolute inset-0 h-full w-full"
+            src="/hero3.jpg"
+            width={1200}
+            height={600}
+            alt="hero"
+          />
+          <div className="mx-auto max-w-2xl lg:py-[170px] relative">
+            <div className="text-center text-white">
+              <h1 className="text-5xl font-bold mb-6 tracking-tight">
+                Helping You Get Home
+              </h1>
+              <div
+                id="search-bar"
+                className="relative flex justify-center items-center"
+              >
+                <input
+                  type="text"
+                  className="border border-gray-300 w-[700px] placeholder:font-light placeholder:text-primary-blue placeholder:text-opacity-70 placeholder:text-base text-primary-blue rounded pl-4 py-6 focus:outline-none focus:border-blue-500"
+                  placeholder="Enter an address, or city"
+                  value={searchTerm}
+                  onChange={handleInputChange}
+                />
+                <Filtersvg />
               </div>
-            )}
+              {filteredSuggestions.length > 0 && showSuggestions && (
+                <div ref={componentRef}>
+                  <ul className="absolute z-[20] bg-white border border-gray-300 rounded mt-1 w-full max-w-[700px]">
+                    {filteredSuggestions.map((suggestion, index) => (
+                      <li
+                        key={index}
+                        className="px-4 py-4 text-start cursor-pointer text-primary-blue font-light hover:bg-blue-50 hover:bg-opacity-80"
+                        onClick={() => handleSuggestionClick(suggestion)}
+                      >
+                        {suggestion}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
