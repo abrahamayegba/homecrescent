@@ -8,9 +8,9 @@ import {
 const FAQs = () => {
   return (
     <div>
-      <div className="bg-white w-4/5 mx-auto">
-        <div className="mx-auto max-w-7xl px-6 py-24 sm:py-12 lg:px-8 lg:py-20">
-          <h2 className="text-3xl text-center font-bold leading-10 tracking-tight text-gray-900 mb-4">
+      <div className="bg-white w-5/6 mx-auto">
+        <div className="mx-auto py-24 sm:py-12 lg:py-20">
+          <h2 className="text-4xl text-center font-bold leading-10 tracking-tight text-gray-900 mb-4">
             Frequently asked questions
           </h2>
           <Accordion

@@ -18,7 +18,7 @@ const Signinform = () => {
         <input
           type="email"
           required
-          className={`max-w-[400px] px-3 py-[10px] relative border rounded bg-gray-50 hover:border-blue-500 font-light focus:outline-none`}
+          className={`max-w-[400px] px-3 py-[10px] relative border rounded bg-gray-50 focus:border-blue-500 hover:border-blue-500 font-light`}
           placeholder="Enter email"
           // {...register("email")}
         />
@@ -33,7 +33,7 @@ const Signinform = () => {
         <div className={`relative max-w-[400px] group`}>
           <input
             required
-            className={`w-full px-3 py-[10px] relative border rounded focus:outline-none`}
+            className={`w-full px-3 py-[10px] relative border rounded focus:border-blue-500 hover:border-blue-500`}
             placeholder="8+ characters"
           />
         </div>

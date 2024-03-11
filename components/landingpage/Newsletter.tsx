@@ -2,7 +2,7 @@ import React from "react";
 
 const Newsletter = () => {
   return (
-    <div className="py-16 sm:py-24 lg:py-32 w-4/5 mx-auto mb-40 mt-12 relative">
+    <div className="py-16 sm:py-24 lg:py-32 w-5/6 mx-auto mb-40 mt-12 relative">
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat rounded-2xl"
         style={{ backgroundImage: "url('/homecrescent.webp')" }}

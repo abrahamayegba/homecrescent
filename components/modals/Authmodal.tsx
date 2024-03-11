@@ -5,6 +5,7 @@ import { useToast } from "../ui/use-toast";
 import { X } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import Signinform from "../Signinform";
+import Signupform from "../Signupform";
 
 interface AuthModalProps {
   open: boolean;
@@ -93,7 +94,9 @@ const AuthModal: React.FC<AuthModalProps> = ({ open, openModal, onClose }) => {
                     <TabsContent className=" w-full" value="signin">
                       <Signinform />
                     </TabsContent>
-                    <TabsContent value="newaccount">new account</TabsContent>
+                    <TabsContent className=" w-full" value="newaccount">
+                      <Signupform />
+                    </TabsContent>
                   </Tabs>
                 </div>
               </Dialog.Panel>

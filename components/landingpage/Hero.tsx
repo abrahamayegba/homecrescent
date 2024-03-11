@@ -77,7 +77,7 @@ const Hero = () => {
         <div className="mx-auto max-w-2xl lg:py-[170px] relative">
           <div className="text-center text-white">
             <h1 className="text-5xl font-bold mb-6 tracking-tight">
-              Move In Today, On Your Terms{" "}
+              Helping You Get Home
             </h1>
             <div className="relative flex justify-center items-center">
               <input
