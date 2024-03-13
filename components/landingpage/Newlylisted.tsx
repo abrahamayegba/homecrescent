@@ -7,6 +7,8 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 const carouselData = [
   {
@@ -74,15 +76,23 @@ const carouselData = [
 const Newlylisted = () => {
   return (
     <div className=" mx-auto w-5/6 mt-6 py-3">
-      <div className=" pl-1">
-        <p className=" font-semibold text-xl text-primary-blue ">
-          Newly listed homes in Lagos
-        </p>
-        <p className=" text-primary-blue font-light text-sm text-opacity-70 mt-1">
-          Check out new homes in your location
-        </p>
+      <div className=" pl-1 flex flex-row justify-between items-center">
+        <div className=" flex items-start flex-col">
+          <p className=" font-semibold text-xl text-primary-blue ">
+            Newly listed homes in Lagos
+          </p>
+          <p className=" text-primary-blue font-light text-sm text-opacity-70 mt-1">
+            Check out new homes in your location
+          </p>
+        </div>
+        <Link href={`/listing?address=${"Lagos"}`}>
+          <button className=" flex flex-row gap-x-[10px] px-4 py-2 text-primary-orange bg-white hover:bg-opacity-30 rounded hover:bg-orange-50 border border-primary-orange text-[15px] font-medium">
+            See more
+            <ArrowRight className=" stroke-[1.5px]" />
+          </button>
+        </Link>
       </div>
-      <Carousel className=" mt-3">
+      <Carousel className=" mt-5">
         <CarouselPrevious />
         <CarouselNext />
         <CarouselContent className="-ml-5 pb-1 pl-1">

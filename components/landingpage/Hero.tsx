@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Filtersvg from "@/components/icons/Filtersvg";
 import Topnav from "../Topnav";
+import Link from "next/link";
 
 const generateRandomAddresses = () => {
   const streets = [
@@ -28,7 +29,7 @@ const generateRandomAddresses = () => {
   return addresses;
 };
 
-const suggestions = generateRandomAddresses(); // Generate random addresses
+const suggestions = generateRandomAddresses();
 
 const Hero = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -115,8 +116,14 @@ const Hero = () => {
                       <li
                         key={index}
                         className="px-4 py-4 text-start cursor-pointer text-primary-blue font-light hover:bg-blue-50 hover:bg-opacity-80"
-                        onClick={() => handleSuggestionClick(suggestion)}
                       >
+                        <Link href={`/listing?address=${suggestion}`}>
+                          <button
+                            onClick={() => handleSuggestionClick(suggestion)}
+                          >
+                            {suggestion}
+                          </button>
+                        </Link>
                         {suggestion}
                       </li>
                     ))}
