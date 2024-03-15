@@ -8,14 +8,20 @@ import AuthModal from "./modals/Authmodal";
 import useModal from "./hooks/useModal";
 import Link from "next/link";
 import ListingNav from "./ListingNav";
+import { isAuthenticated } from "@/lib/auth";
+import { useGetUserByIdQuery } from "@/src/generated/graphql";
+import TopbarDropdown from "./TopbarDropdown";
 
 const ListingTopbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const handleCloseMobileSheet = () => {
     setMobileMenuOpen(false);
   };
-
   const { openModal, closeModal, isOpen } = useModal();
+  const isUserAuthenticated = isAuthenticated();
+  const { data: userData, refetch, loading } = useGetUserByIdQuery();
+
+  const userFirstLetter = userData?.getUserById?.fullname?.charAt(0);
 
   return (
     <>
@@ -111,12 +117,18 @@ const ListingTopbar = () => {
               <button className=" flex gap-x-1.5 text-primary-blue items-center hover:underline">
                 Saved <Heart className=" text-primary-blue w-[18px] h-[18px]" />
               </button>
-              <button
-                onClick={openModal}
-                className=" leading-6 hover:underline text-primary-orange"
-              >
-                Sign In
-              </button>
+              {isUserAuthenticated && userData ? (
+                <>
+                  <TopbarDropdown userFirstLetter={userFirstLetter} />
+                </>
+              ) : (
+                <button
+                  onClick={openModal}
+                  className=" leading-6 hover:underline text-primary-orange"
+                >
+                  Sign In
+                </button>
+              )}
             </div>
           </nav>
           <ListingNav />

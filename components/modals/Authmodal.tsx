@@ -30,15 +30,6 @@ const AuthModal: React.FC<AuthModalProps> = ({ open, openModal, onClose }) => {
       duration: 3000,
     });
   };
-  const handleArchiveCustomerClick = async () => {
-    try {
-      onClose();
-      showSuccessToast();
-    } catch (error) {
-      console.error(error);
-      showFailureToast(error);
-    }
-  };
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -65,7 +56,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ open, openModal, onClose }) => {
               leaveFrom="opacity-100 translate-y-0 sm:scale-100"
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
-              <Dialog.Panel className="relative transform gap-y-3 overflow-hidden rounded-lg bg-white p-4 transition-all w-[440px] ">
+              <Dialog.Panel className="relative transform max-h-[710px] gap-y-3 overflow-auto rounded-lg bg-white p-4 transition-all w-[440px] ">
                 <div className=" flex flex-col gap-y-3 py-6 px-2 relative">
                   <button className=" absolute cursor-pointer border border-transparent hover:bg-gray-100 rounded-full p-2 right-0 mt-[-24px]">
                     <X onClick={onClose} className=" w-5 h-5" />
@@ -92,10 +83,10 @@ const AuthModal: React.FC<AuthModalProps> = ({ open, openModal, onClose }) => {
                       </TabsTrigger>
                     </TabsList>
                     <TabsContent className=" w-full" value="signin">
-                      <Signinform />
+                      <Signinform closeModal={onClose} />
                     </TabsContent>
                     <TabsContent className=" w-full" value="newaccount">
-                      <Signupform />
+                      <Signupform closeModal={onClose} />
                     </TabsContent>
                   </Tabs>
                 </div>

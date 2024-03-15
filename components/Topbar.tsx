@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Heart, Menu } from "lucide-react";
 import Mobilesheet from "./sheets/Mobilesheet";
 import Homecrescentlogo from "./logos/Homecrescentlogo";
@@ -7,6 +7,10 @@ import { HoverCard, HoverCardContent, HoverCardTrigger } from "./ui/hover-card";
 import AuthModal from "./modals/Authmodal";
 import useModal from "./hooks/useModal";
 import Link from "next/link";
+import { isAuthenticated } from "@/lib/auth";
+import { useGetUserByIdQuery } from "@/src/generated/graphql";
+import TopbarDropdown from "./TopbarDropdown";
+import Loader2 from "./loading/Loader2";
 
 const Topbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -15,6 +19,24 @@ const Topbar = () => {
   };
 
   const { openModal, closeModal, isOpen } = useModal();
+  const { data: userData, refetch, loading } = useGetUserByIdQuery();
+  const isUserAuthenticated = isAuthenticated();
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        if (isUserAuthenticated) {
+          await refetch();
+        }
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    };
+
+    fetchUserData();
+  }, [isUserAuthenticated, refetch]);
+
+  const userFirstLetter = userData?.getUserById?.fullname?.charAt(0);
 
   return (
     <>
@@ -110,12 +132,18 @@ const Topbar = () => {
               <button className=" flex gap-x-1.5 text-primary-blue items-center hover:underline">
                 Saved <Heart className=" text-primary-blue w-[18px] h-[18px]" />
               </button>
-              <button
-                onClick={openModal}
-                className=" leading-6 hover:underline text-primary-orange"
-              >
-                Sign In
-              </button>
+              {isUserAuthenticated && userData ? (
+                <>
+                  <TopbarDropdown userFirstLetter={userFirstLetter} />
+                </>
+              ) : (
+                <button
+                  onClick={openModal}
+                  className=" leading-6 hover:underline text-primary-orange"
+                >
+                  Sign In
+                </button>
+              )}
             </div>
           </nav>
           <Mobilesheet open={mobileMenuOpen} onClose={handleCloseMobileSheet} />
