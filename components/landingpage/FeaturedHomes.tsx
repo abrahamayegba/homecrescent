@@ -73,7 +73,7 @@ const carouselData = [
   },
 ];
 
-const Recommendations = () => {
+const FeaturedHomes = () => {
   return (
     <div className=" mx-auto w-5/6 mt-6 py-6">
       <div className=" pl-1 flex flex-row justify-between items-center">
@@ -101,37 +101,39 @@ const Recommendations = () => {
               key={item.id}
               className="pl-5 md:basis-1/2 lg:basis-1/4"
             >
-              <div className="flex flex-col rounded overflow-hidden max-w-[310px] cursor-pointer">
-                <div className="flex-shrink-0">
-                  <Image
-                    width={310}
-                    height={177}
-                    className="object-cover rounded-lg w-full h-48"
-                    alt="Home"
-                    src={item.image}
-                  />{" "}
-                </div>
-                <div className="p-2 pb-4 flex flex-col gap-y-1">
-                  <p className="font-medium text-[22px] text-primary-blue">
-                    {item.price}
-                  </p>
-                  <div className="flex flex-row gap-x-3 text-[15px] font-light text-primary-blue">
-                    <p className="border-r border-gray-300 pr-3">
-                      <span className="font-medium">{item.beds}</span> bds
-                    </p>
-                    <p className="border-r border-gray-300 pr-3">
-                      <span className="font-medium">{item.baths}</span> Ba
-                    </p>
-                    <p className="border-r border-gray-300 pr-3">
-                      <span className="font-medium">{item.sqft}</span> sqft
-                    </p>
-                    <p>{item.status}</p>
+              <Link href={`/listing?address=${item.address}&openModal=true`}>
+                <div className="flex flex-col rounded overflow-hidden max-w-[310px] cursor-pointer">
+                  <div className="flex-shrink-0">
+                    <Image
+                      width={310}
+                      height={177}
+                      className="object-cover rounded-lg w-full h-48"
+                      alt="Home"
+                      src={item.image}
+                    />{" "}
                   </div>
-                  <p className="text-primary-blue font-light text-[15px]">
-                    {item.address}
-                  </p>
+                  <div className="p-2 pb-4 flex flex-col gap-y-1">
+                    <p className="font-medium text-[22px] text-primary-blue">
+                      {item.price}
+                    </p>
+                    <div className="flex flex-row gap-x-3 text-[15px] font-light text-primary-blue">
+                      <p className="border-r border-gray-300 pr-3">
+                        <span className="font-medium">{item.beds}</span> bds
+                      </p>
+                      <p className="border-r border-gray-300 pr-3">
+                        <span className="font-medium">{item.baths}</span> Ba
+                      </p>
+                      <p className="border-r border-gray-300 pr-3">
+                        <span className="font-medium">{item.sqft}</span> sqft
+                      </p>
+                      <p>{item.status}</p>
+                    </div>
+                    <p className="text-primary-blue font-light text-[15px]">
+                      {item.address}
+                    </p>
+                  </div>
                 </div>
-              </div>
+              </Link>
             </CarouselItem>
           ))}
         </CarouselContent>
@@ -140,4 +142,4 @@ const Recommendations = () => {
   );
 };
 
-export default Recommendations;
+export default FeaturedHomes;

@@ -1,7 +1,6 @@
 import React from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
-import { useToast } from "../ui/use-toast";
 import { X } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import Signinform from "../Signinform";
@@ -13,24 +12,6 @@ interface AuthModalProps {
   onClose: () => void;
 }
 const AuthModal: React.FC<AuthModalProps> = ({ open, openModal, onClose }) => {
-  const { toast } = useToast();
-
-  const showSuccessToast = () => {
-    toast({
-      title: "Successful!",
-      description: "Your customer has been successfully archived",
-      duration: 3500,
-    });
-  };
-  const showFailureToast = (error: any) => {
-    toast({
-      variant: "destructive",
-      title: "Uh oh! Something went wrong.",
-      description: error?.message,
-      duration: 3000,
-    });
-  };
-
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as="div" className="relative z-[110]" onClose={onClose}>
@@ -58,8 +39,11 @@ const AuthModal: React.FC<AuthModalProps> = ({ open, openModal, onClose }) => {
             >
               <Dialog.Panel className="relative transform max-h-[710px] gap-y-3 overflow-auto rounded-lg bg-white p-4 transition-all w-[440px] ">
                 <div className=" flex flex-col gap-y-3 py-6 px-2 relative">
-                  <button className=" absolute cursor-pointer border border-transparent hover:bg-gray-100 rounded-full p-2 right-0 mt-[-24px]">
-                    <X onClick={onClose} className=" w-5 h-5" />
+                  <button
+                    onClick={onClose}
+                    className=" absolute cursor-pointer border border-transparent hover:bg-gray-100 rounded-full p-2 right-0 mt-[-24px]"
+                  >
+                    <X className=" w-5 h-5" />
                   </button>
                   <p className=" font-semibold text-2xl text-primary-blue text-opacity-90 tracking-tight mt-3">
                     Welcome to Homecrescent

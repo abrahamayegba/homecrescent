@@ -1,5 +1,5 @@
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import GoogleIcon from "./logos/GoogleIcon";
 import {
   GetUserByIdDocument,
@@ -8,6 +8,7 @@ import {
 import { useForm } from "react-hook-form";
 import { saveToken } from "@/lib/auth";
 import { useApolloClient } from "@apollo/client";
+import { Eye, EyeOff } from "lucide-react";
 
 interface FormData {
   email: string;
@@ -22,6 +23,12 @@ const Signinform: React.FC<Props> = ({ closeModal }) => {
   const { register, reset, handleSubmit } = useForm<FormData>();
   const [signInMutation, { loading }] = useSignInMutation();
   const client = useApolloClient();
+
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword((prevShowPassword) => !prevShowPassword);
+  };
 
   const handleSignin = async (data: FormData) => {
     try {
@@ -75,12 +82,23 @@ const Signinform: React.FC<Props> = ({ closeModal }) => {
         </label>
         <div className={`relative max-w-[400px] group`}>
           <input
-            type="password"
+            type={showPassword ? "text" : "password"}
             required
             className={`w-full px-3 py-[10px] border bg-gray-50 rounded focus:border-blue-500 hover:border-blue-500 font-light `}
             placeholder="8+ characters"
             {...register("password")}
           />
+          <button
+            type="button"
+            onClick={togglePasswordVisibility}
+            className="absolute inset-y-0 right-0 flex items-center px-3 border-l focus:outline-none"
+          >
+            {showPassword ? (
+              <Eye className=" text-primary-blue w-5 h-5 opacity-75" />
+            ) : (
+              <EyeOff className=" text-primary-blue w-5 h-5 opacity-75" />
+            )}
+          </button>
         </div>
         <div className=" flex flex-col mt-6">
           <button

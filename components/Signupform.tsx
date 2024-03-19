@@ -8,6 +8,7 @@ import {
 import { useForm } from "react-hook-form";
 import { saveToken } from "@/lib/auth";
 import { useApolloClient } from "@apollo/client";
+import { Eye, EyeOff } from "lucide-react";
 
 interface FormData {
   email: string;
@@ -27,6 +28,12 @@ const Signupform: React.FC<Props> = ({ closeModal }) => {
     false
   );
   const client = useApolloClient();
+
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword((prevShowPassword) => !prevShowPassword);
+  };
 
   const handleSignUp = async (data: FormData) => {
     try {
@@ -109,14 +116,25 @@ const Signupform: React.FC<Props> = ({ closeModal }) => {
         >
           Password
         </label>
-        <div className=" max-w-[400px] group">
+        <div className=" max-w-[400px] relative group">
           <input
-            type="password"
+            type={showPassword ? "text" : "password"}
             required
             className={`w-full px-3 py-[10px] border bg-gray-50 rounded focus:border-blue-500 hover:border-blue-500 font-light `}
             placeholder="Create password"
             {...register("password")}
           />
+          <button
+            type="button"
+            onClick={togglePasswordVisibility}
+            className="absolute inset-y-0 right-0 flex items-center px-3 border-l focus:outline-none"
+          >
+            {showPassword ? (
+              <Eye className=" text-primary-blue w-5 h-5 opacity-75" />
+            ) : (
+              <EyeOff className=" text-primary-blue w-5 h-5 opacity-75" />
+            )}
+          </button>
         </div>
         <div className="flex items-center gap-x-2 mt-5">
           <Checkbox
