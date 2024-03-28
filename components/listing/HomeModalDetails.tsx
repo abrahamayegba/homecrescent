@@ -63,7 +63,7 @@ const HomeModalDetails: React.FC<Props> = ({ onClose }) => {
             </button>
           </div>
         </div>
-        <div className="flex flex-row gap-x-2 h-[389px]">
+        {/* <div className="flex flex-row gap-x-2 h-[389px]">
           <div className="w-1/2">
             <Image
               src="/home1.jpg"
@@ -87,7 +87,33 @@ const HomeModalDetails: React.FC<Props> = ({ onClose }) => {
               </div>
             ))}
           </div>
+        </div> */}
+        <div className="grid grid-cols-2 gap-x-2">
+          <div className="w-full">
+            <Image
+              src="/home3.jpg"
+              className="overflow-clip object-cover"
+              width={590}
+              height={445}
+              alt="Your image"
+              onClick={() => handleImageClick(0)}
+            />
+          </div>
+          <div className="grid grid-cols-2 grid-rows-2 gap-x-[6px] gap-y-[6px] overflow-clip">
+            {images.slice(1, 5).map((imageUrl, index) => (
+              <div key={index} className="w-full h-full">
+                <Image
+                  width={289}
+                  height={200}
+                  src={imageUrl}
+                  alt={`Image ${index + 1}`}
+                  onClick={() => handleImageClick(index + 1)}
+                />
+              </div>
+            ))}
+          </div>
         </div>
+
         <div className=" flex flex-row gap-x-[46px] justify-between w-full">
           <div className=" flex flex-col w-[72%] border-b ">
             <p className=" text-start text-sm font-light mt-2 text-primary-blue">

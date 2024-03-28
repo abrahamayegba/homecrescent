@@ -12,7 +12,7 @@ import { createUploadLink } from "apollo-upload-client";
 import { getToken, isAuthenticated, saveToken } from "@/lib/auth";
 
 // export const EXPRESS_URL = process.env.NEXT_PUBLIC_EXPRESS_URL;
-export const EXPRESS_URL = "http://164.92.202.0:8082";
+export const EXPRESS_URL = "https://api.siting.xyz";
 export const GRAPHQL_URL = `${EXPRESS_URL}/graphql`;
 
 const refreshLink = new TokenRefreshLink({

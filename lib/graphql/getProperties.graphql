@@ -1,0 +1,29 @@
+query GetProperties {
+  getProperties {
+    id
+    description
+    price
+    city {
+      cityName
+    }
+    propertyStatus {
+      propertyStatus
+    }
+    propertyDetail {
+      longitude
+      floors
+      bedrooms
+      bathrooms
+      sizeSqft
+      floors
+      address
+    }
+    propertiesMedia {
+      id
+      mediaUrl
+      propertyMediaCategory {
+        mediaCategory
+      }
+    }
+  }
+}

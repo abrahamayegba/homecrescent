@@ -1,5 +1,5 @@
 overwrite: true
-schema: "http://164.92.202.0:8082/graphql"
+schema: "https://api.siting.xyz/graphql"
 documents: "./lib/graphql/*.graphql"
 
 generates:

@@ -132,7 +132,7 @@ const ListingNav = () => {
       <div>
         <DropdownMenu open={open} onOpenChange={setOpen}>
           <DropdownMenuTrigger asChild>
-            <button className="px-[10px] text-primary-blue font-medium capitalize flex items-center gap-x-3 justify-center border border-gray-300 rounded min-w-[106px] h-[38px]">
+            <button className="px-[6px] text-sm text-primary-blue font-medium capitalize flex items-center gap-x-1 justify-center border border-gray-300 rounded min-w-[106px] h-[38px]">
               {position}
               <ChevronDown className="w-6 h-6" />
             </button>
@@ -218,7 +218,7 @@ const ListingNav = () => {
       <div>
         <DropdownMenu open={openMoneyFilter} onOpenChange={setOpenMoneyFilter}>
           <DropdownMenuTrigger asChild>
-            <button className="px-[10px] font-medium capitalize flex text-primary-blue items-center gap-x-3 justify-center border border-gray-300 rounded min-w-[106px] h-[38px]">
+            <button className="px-[6px] text-sm font-medium capitalize flex text-primary-blue items-center gap-x-1 justify-center border border-gray-300 rounded min-w-[140px] h-[38px]">
               ₦
               {`${(Number(minPrice.replace(/,/g, "")) / 1000).toFixed(0)}k - ${(
                 Number(maxPrice.replace(/,/g, "")) / 1000
@@ -343,7 +343,7 @@ const ListingNav = () => {
       <div>
         <DropdownMenu open={openBedFilter} onOpenChange={setOpenBedFilter}>
           <DropdownMenuTrigger asChild>
-            <div className="px-[10px] cursor-pointer font-medium capitalize flex text-primary-blue items-center gap-x-3 justify-center border border-gray-300 rounded min-w-[106px] h-[38px]">
+            <div className="px-[6px] text-sm cursor-pointer font-medium capitalize flex text-primary-blue items-center gap-x-1 justify-center border border-gray-300 rounded min-w-[120px] h-[38px]">
               {bedroomButtonText}, {bathroomButtonText}
               <ChevronDown className="w-6 h-6" />
             </div>
@@ -425,7 +425,7 @@ const ListingNav = () => {
           onOpenChange={setOpenHomeTypeDropdown}
         >
           <DropdownMenuTrigger>
-            <div className="px-[10px] text-primary-blue font-medium capitalize flex items-center gap-x-3 justify-center border border-gray-300 rounded min-w-[106px] h-[38px]">
+            <div className="px-[6px] text-sm text-primary-blue font-medium capitalize flex items-center gap-x-1 justify-center border border-gray-300 rounded min-w-[120px] h-[38px]">
               Home Type
               <ChevronDown className="w-6 h-6" />
             </div>
@@ -480,10 +480,12 @@ const ListingNav = () => {
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
-      <button className=" px-4 py-2 bg-primary-orange rounded hover:bg-orange-50 hover:text-primary-orange hover:border-primary-orange hover:border text-white text-[15px] font-medium">
+      <button className=" px-2 py-2 text-sm bg-primary-orange rounded hover:bg-orange-50 hover:text-primary-orange hover:border-primary-orange hover:border min-w-[110px] text-white">
         Save search
       </button>
-      <p className=" text-primary-blue ml-auto font-medium">2 Saved Homes</p>
+      <p className=" text-primary-blue ml-auto font-medium hidden xl:block">
+        2 Saved Homes
+      </p>
     </div>
   );
 };
